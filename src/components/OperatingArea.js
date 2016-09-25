@@ -16,12 +16,14 @@ export default class OperatingArea extends Component {
     this.state = {
       newCards: [],
       beginningCards: {},
-      index: 4
+      index: 4,
+      result: ''
     }
 
     this.getBeginningCards = this.getBeginningCards.bind(this);
     this.hitCards = this.hitCards.bind(this);
     this.standCards = this.standCards.bind(this);
+    this.determineResult = this.determineResult.bind(this);
   }
 
   getBeginningCards() {
@@ -74,6 +76,11 @@ export default class OperatingArea extends Component {
 
     CardsActions.hit(lastCards);
 
+    let newPlayerScore = this.scoreHand(playerCardsArr);
+    if(newPlayerScore > 21){
+      let result = 'Dealer Wins!';
+      this.setState({ result });
+    }
   }
 
   standCards() {
@@ -99,10 +106,27 @@ export default class OperatingArea extends Component {
     }
 
     CardsActions.stand(lastCards);
+
+    let lastScores = { dealerScore, playerScore };
+    this.determineResult(lastScores);
+  }
+
+  determineResult(lastScores){
+    let result;
+    if((lastScores.dealerScore <= 21) && (lastScores.dealerScore > lastScores.playerScore)){
+      result = 'Dealer Wins!';
+    }else if((lastScores.playerScore <= 21) && (lastScores.playerScore > lastScores.dealerScore)){
+      result = 'You Wins!';
+    }else if(lastScores.dealerScore > 21) {
+      result = 'You Wins!';
+    }else if(lastScores.dealerScore == lastScores.playerScore){
+      result = 'Draw!!'
+    }
+    this.setState({ result });
   }
 
   render() {
-
+    let { result } = this.state;
     return (
       <div className = 'btnGroup'>
         <FloatingActionButton style={style} onClick={this.getBeginningCards}>
@@ -114,6 +138,9 @@ export default class OperatingArea extends Component {
         <FloatingActionButton secondary={true} style={style} onClick={this.standCards}>
           <span>Stand</span>
         </FloatingActionButton>
+        <div>
+          <h1>{ result }</h1>
+        </div>
       </div>
     )
   }

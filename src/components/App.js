@@ -44,7 +44,7 @@ export default class App extends Component {
               <GameDeck cards={this.state.cards} />
             </div>
             <div className="col-md-1">
-              <OperatingArea startGame={this.startGame} />
+              <OperatingArea startGame={this.startGame} cards={this.state.cards}/>
             </div>
           </div>
         </div>
