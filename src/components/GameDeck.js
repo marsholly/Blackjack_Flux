@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 export default class GameDeck extends Component {
 
   scoreHand(cards){
@@ -31,17 +30,18 @@ export default class GameDeck extends Component {
 
   render() {
     let { cards } = this.props;
-    let  dealerCards, playerCards, dealerCardsImg, playerCardsImg, dealerScore = 0, playerScore = 0;
+    let  dealerCardsArr, playerCardsArr, dealerCardsImg, playerCardsImg, dealerScore = 0, playerScore = 0;
+    let scores = { dealerScore: 0, playerScore: 0 };
 
     if ( Object.keys(cards).length !== 0) {
-      dealerCards = cards.dealerBeginningCards;
-      playerCards = cards.playerBeginningCards;
+      dealerCardsArr = cards.dealerCards;
+      playerCardsArr = cards.playerCards;
 
-      dealerCardsImg = this.displayCards(dealerCards);
-      playerCardsImg = this.displayCards(playerCards);
+      dealerCardsImg = this.displayCards(dealerCardsArr);
+      playerCardsImg = this.displayCards(playerCardsArr);
 
-      dealerScore = this.scoreHand(dealerCards);
-      playerScore = this.scoreHand(playerCards);
+      dealerScore = this.scoreHand(dealerCardsArr);
+      playerScore = this.scoreHand(playerCardsArr);
 
     } else {
       dealerCardsImg = <div></div>;
@@ -50,7 +50,7 @@ export default class GameDeck extends Component {
 
     return (
       <div>
-        <h3>Dealer :  {dealerScore}</h3>
+        <h3>Dealer :  { dealerScore }</h3>
         <div className="row">
           <span className='cardsArea'> { dealerCardsImg } </span>
         </div>

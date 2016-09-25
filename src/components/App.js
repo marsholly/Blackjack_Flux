@@ -14,7 +14,6 @@ export default class App extends Component {
 
     this.startGame = this.startGame.bind(this);
     this._onChange = this._onChange.bind(this);
-
   }
 
   componentWillMount() {
@@ -42,10 +41,10 @@ export default class App extends Component {
           <h1 className="text-center">Blackjack</h1>
           <div className="row">
             <div className="col-md-11">
-              <GameDeck cards={this.state.cards}/>
+              <GameDeck cards={this.state.cards} />
             </div>
             <div className="col-md-1">
-              <OperatingArea startGame={this.startGame}/>
+              <OperatingArea startGame={this.startGame} />
             </div>
           </div>
         </div>

@@ -7,7 +7,18 @@ const CardsActions = {
       payload: { cards }
     })
   },
-
+  stand(standCards) {
+    AppDispatcher.dispatch ({
+      type: 'STAND',
+      payload: { standCards }
+    })
+  },
+  hit(hitCards) {
+    AppDispatcher.dispatch ({
+      type: 'HIT',
+      payload: { hitCards }
+    })
+  }
 }
 
 export default CardsActions;

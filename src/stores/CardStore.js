@@ -12,10 +12,18 @@ class CardStore extends EventEmitter {
         case 'CREATE_NEW_GAME':
           let { cards } = action.payload;
           _cards = cards;
-          // _cards.push(cards);
           this.emit('CHANGE');
           break;
-
+        case 'STAND':
+          let { standCards } = action.payload;
+          _cards = standCards;
+          this.emit('CHANGE');
+          break;
+        case 'HIT':
+          let { hitCards } = action.payload;
+          _cards = hitCards;
+          this.emit('CHANGE');
+          break;
       }
     });
   }
