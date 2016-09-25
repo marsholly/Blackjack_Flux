@@ -31,7 +31,7 @@ export default class OperatingArea extends Component {
       newCards: [],
       beginningCards: {},
       index: 4,
-      result: ''  
+      result: ''
     });
 
     const cards = Cards.wholeDeck;
@@ -122,11 +122,9 @@ export default class OperatingArea extends Component {
     let result;
     if((lastScores.dealerScore <= 21) && (lastScores.dealerScore > lastScores.playerScore)){
       result = 'Dealer Wins!';
-    }else if((lastScores.playerScore <= 21) && (lastScores.playerScore > lastScores.dealerScore)){
-      result = 'You Wins!';
     }else if(lastScores.dealerScore > 21) {
       result = 'You Wins!';
-    }else if(lastScores.dealerScore == lastScores.playerScore){
+    }else{
       result = 'Draw!!'
     }
     this.setState({ result });
