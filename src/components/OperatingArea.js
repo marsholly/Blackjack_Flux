@@ -148,8 +148,8 @@ export default class OperatingArea extends Component {
     let { result } = this.state;
     return (
       <div className = 'btnGroup'>
-        <div>
-          <h1>{ result }</h1>
+        <div className="resultArea">
+          <h3>{ result }</h3>
         </div>
         <FloatingActionButton style={style} onClick={this.getBeginningCards} backgroundColor='#B388FF'>
           <span>Deal</span>

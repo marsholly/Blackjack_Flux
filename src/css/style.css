@@ -9,10 +9,18 @@ body {
 }
 
 .cardsArea{
-  margin-top: 60px; 
+  margin-top: 60px;
   margin-left: 30px;
 }
 
 .btnGroup {
   margin-top: 60px;
+}
+
+.resultArea {
+  border:0px dashed #02390f;
+  height: 80px;
+  width: 150px;
+  margin-bottom: 10px;
+  color: yellow;
 }
