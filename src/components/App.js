@@ -9,7 +9,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: []
+      cards: {}
     };
 
     this.startGame = this.startGame.bind(this);
@@ -41,10 +41,10 @@ export default class App extends Component {
         <div className="container">
           <h1 className="text-center">Blackjack</h1>
           <div className="row">
-            <div className="col-md-10">
+            <div className="col-md-11">
               <GameDeck cards={this.state.cards}/>
             </div>
-            <div className="col-md-2">
+            <div className="col-md-1">
               <OperatingArea startGame={this.startGame}/>
             </div>
           </div>

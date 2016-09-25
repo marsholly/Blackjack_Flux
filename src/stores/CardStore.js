@@ -1,7 +1,7 @@
 import AppDispatcher from '../AppDispatcher';
 import { EventEmitter } from 'events';
 
-let _cards = [];
+let _cards = {};
 
 class CardStore extends EventEmitter {
   constructor(props) {
@@ -11,7 +11,8 @@ class CardStore extends EventEmitter {
       switch (action.type) {
         case 'CREATE_NEW_GAME':
           let { cards } = action.payload;
-          _cards.push(cards);
+          _cards = cards;
+          // _cards.push(cards);
           this.emit('CHANGE');
           break;
 
