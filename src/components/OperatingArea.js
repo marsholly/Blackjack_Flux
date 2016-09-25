@@ -36,6 +36,8 @@ export default class OperatingArea extends Component {
       enable: false
     });
 
+    this.props.clearDeck();
+
     const cards = Cards.wholeDeck;
     let newCards = _.shuffle(cards);
     let beginningCards = {
@@ -51,10 +53,12 @@ export default class OperatingArea extends Component {
     if ( dealerScore === 21 ) {
       this.setState({ result: 'Black Jack!! Dealer Wins!' });
       this.setState({ enable: true });
+      this.props.dealerScoreVisible();
     }
     if ( playerScore === 21 ) {
       this.setState({ result: 'Black Jack!! You Wins!' });
       this.setState({ enable: true });
+      this.props.dealerScoreVisible();
     }
   }
 
@@ -100,11 +104,14 @@ export default class OperatingArea extends Component {
     if(newPlayerScore > 21){
       let result = 'Dealer Wins!';
       this.setState({ result, enable: true });
+      this.props.dealerScoreVisible();
     }
   }
 
   standCards() {
     this.setState({ enable: true });
+    this.props.dealerScoreVisible();
+
     let { beginningCards, newCards, index } = this.state;
     let dealerCardsArr, playerCardsArr, dealerScore, playerScore;
     dealerCardsArr = beginningCards.dealerCards;

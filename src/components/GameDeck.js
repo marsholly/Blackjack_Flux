@@ -3,6 +3,13 @@ import React, { Component } from 'react';
 export default class GameDeck extends Component {
 
   scoreHand(cards){
+    let { scoreEnable } = this.props;
+    if (!scoreEnable) {
+      document.getElementById('dealerScore').style.visibility = "hidden";
+    } else {
+      document.getElementById('dealerScore').style.visibility = "visible";
+    }
+
     let aces = 0;
     let score = cards.reduce((sum, card) => {
       if ( card[0] === 1 ) {
@@ -50,7 +57,7 @@ export default class GameDeck extends Component {
 
     return (
       <div>
-        <h3>Dealer :  { dealerScore }</h3>
+        <h3>Dealer :<span id='dealerScore'> { dealerScore } </span></h3>
         <div className="row">
           <span className='cardsArea'> { dealerCardsImg } </span>
         </div>
