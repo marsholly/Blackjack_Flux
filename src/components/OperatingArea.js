@@ -27,6 +27,13 @@ export default class OperatingArea extends Component {
   }
 
   getBeginningCards() {
+    this.setState({
+      newCards: [],
+      beginningCards: {},
+      index: 4,
+      result: ''  
+    });
+
     const cards = Cards.wholeDeck;
     let newCards = _.shuffle(cards);
     let beginningCards = {
@@ -129,7 +136,10 @@ export default class OperatingArea extends Component {
     let { result } = this.state;
     return (
       <div className = 'btnGroup'>
-        <FloatingActionButton style={style} onClick={this.getBeginningCards}>
+        <div>
+          <h1>{ result }</h1>
+        </div>
+        <FloatingActionButton style={style} onClick={this.getBeginningCards} backgroundColor='#B388FF'>
           <span>Deal</span>
         </FloatingActionButton>
         <FloatingActionButton style={style} onClick={this.hitCards}>
@@ -138,9 +148,6 @@ export default class OperatingArea extends Component {
         <FloatingActionButton secondary={true} style={style} onClick={this.standCards}>
           <span>Stand</span>
         </FloatingActionButton>
-        <div>
-          <h1>{ result }</h1>
-        </div>
       </div>
     )
   }
