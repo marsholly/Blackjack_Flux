@@ -10,22 +10,29 @@ const style = {
 export default class OperatingArea extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
-    this.startGame = this.startGame.bind(this);
+    // this.state = {
+    //
+    // }
+    this.getBeginningCards = this.getBeginningCards.bind(this);
   }
 
-  startGame(){
+  getBeginningCards(){
     const cards = Cards.wholeDeck;
-    console.log('cards:', cards);
+    let newCards = _.chunk(_.shuffle(cards), 2);
+    let beginningCards = {
+      dealerBeginningCards: newCards[0],
+      playerBeginningCards: newCards[1]
+    }
+
+    this.props.startGame(beginningCards);
+
   }
 
   render() {
 
     return (
       <div>
-        <FloatingActionButton style={style} onClick={this.startGame}>
+        <FloatingActionButton style={style} onClick={this.getBeginningCards}>
           <span>Deal</span>
         </FloatingActionButton>
       </div>
