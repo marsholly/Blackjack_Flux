@@ -54,7 +54,6 @@ export default class GameDeck extends Component {
         </span>
       )
     }
-
   }
 
   render() {
