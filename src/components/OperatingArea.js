@@ -17,7 +17,8 @@ export default class OperatingArea extends Component {
       newCards: [],
       beginningCards: {},
       index: 4,
-      result: ''
+      result: '',
+      enable: false
     }
 
     this.getBeginningCards = this.getBeginningCards.bind(this);
@@ -31,7 +32,8 @@ export default class OperatingArea extends Component {
       newCards: [],
       beginningCards: {},
       index: 4,
-      result: ''
+      result: '',
+      enable: false
     });
 
     const cards = Cards.wholeDeck;
@@ -43,6 +45,17 @@ export default class OperatingArea extends Component {
 
     this.props.startGame(beginningCards);
     this.setState({ newCards, beginningCards })
+
+    let dealerScore = this.scoreHand(beginningCards.dealerCards);
+    let playerScore = this.scoreHand(beginningCards.playerCards);
+    if ( dealerScore === 21 ) {
+      this.setState({ result: 'Black Jack!! Dealer Wins!' });
+      this.setState({ enable: true });
+    }
+    if ( playerScore === 21 ) {
+      this.setState({ result: 'Black Jack!! You Wins!' });
+      this.setState({ enable: true });
+    }
   }
 
   scoreHand(cards){
@@ -86,11 +99,12 @@ export default class OperatingArea extends Component {
     let newPlayerScore = this.scoreHand(playerCardsArr);
     if(newPlayerScore > 21){
       let result = 'Dealer Wins!';
-      this.setState({ result });
+      this.setState({ result, enable: true });
     }
   }
 
   standCards() {
+    this.setState({ enable: true });
     let { beginningCards, newCards, index } = this.state;
     let dealerCardsArr, playerCardsArr, dealerScore, playerScore;
     dealerCardsArr = beginningCards.dealerCards;
@@ -140,7 +154,7 @@ export default class OperatingArea extends Component {
         <FloatingActionButton style={style} onClick={this.getBeginningCards} backgroundColor='#B388FF'>
           <span>Deal</span>
         </FloatingActionButton>
-        <FloatingActionButton style={style} onClick={this.hitCards}>
+        <FloatingActionButton style={style} onClick={this.hitCards} disabled={this.state.enable}>
           <span>Hit</span>
         </FloatingActionButton>
         <FloatingActionButton secondary={true} style={style} onClick={this.standCards}>
